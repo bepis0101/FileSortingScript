@@ -10,7 +10,7 @@ def fix_path(path: str):
     new_path = path.replace('\\', '/')
     return new_path
 
-main_directory = input('Podaj sciezke ktora chcesz uporzadkowac: ')
+main_directory = input('Input the directory you need to sort: ')
 
 main_directory = fix_path(main_directory)
 
@@ -46,6 +46,10 @@ documents = [
     'odt',
 ]
 
+trash = [
+    'lrv',
+    'thm',
+]
 
 def match(extension):
     for item in pictures:
@@ -60,6 +64,9 @@ def match(extension):
     for item in documents:
         if item == extension:
             return 'documents/'
+    for item in trash:
+        if item == extension:
+            return 'trash/'
     return 0
 
 
@@ -67,15 +74,11 @@ for file in os.listdir():
     extension = os.path.splitext(file)[-1][1:]
     extension = extension.lower()
     directory = match(extension)
-    # print(extension)
     if directory:
         target_dir = create_path(main_directory, directory)
-        # print(target_dir)
         if os.path.exists(target_dir):
             shutil.move(create_path(main_directory, file), target_dir)
-            # print((create_path(main_directory, file), target_dir))
             
         else:
             os.mkdir(target_dir)
             shutil.move(create_path(main_directory, file), target_dir)
-            # print((create_path(main_directory, file), target_dir))
