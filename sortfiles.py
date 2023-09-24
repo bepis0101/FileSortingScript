@@ -14,8 +14,6 @@ main_directory = input('Podaj sciezke ktora chcesz uporzadkowac: ')
 
 main_directory = fix_path(main_directory)
 
-# main_directory = "/Users/borys/Downloads"
-
 os.chdir(main_directory)
 
 pictures = [
