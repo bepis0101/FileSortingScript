@@ -65,7 +65,9 @@ def match(extension):
 
 for file in os.listdir():
     extension = os.path.splitext(file)[-1][1:]
+    extension = extension.lower()
     directory = match(extension)
+    # print(extension)
     if directory:
         target_dir = create_path(main_directory, directory)
         # print(target_dir)
